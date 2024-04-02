@@ -26,8 +26,8 @@ lora_head = False
 
 
 def merge_lora(
-    lora_path: Path = Path("out/lora/alpaca/lit_model_lora_finetuned.pth"),
-    checkpoint_dir: Path = Path("checkpoints/stabilityai/stablelm-base-alpha-3b"),
+    lora_path: Path = Path("out/lor/checkpoint/lit_model.pth"),
+    checkpoint_dir: Path = Path("checkpoints/mistralai/Mistral-7B-v0.1"),
     out_dir: Path = Path("out/lora/checkpoint"),
     precision: Optional[str] = None,
 ) -> None:
