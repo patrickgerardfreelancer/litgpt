@@ -4,25 +4,24 @@
 
 ## Using lm-evaluation-harness
 
-You can evaluate Lit-GPT using [EleutherAI's lm-eval](https://github.com/EleutherAI/lm-evaluation-harness/tree/master) framework with a large number of different evaluation tasks.
+You can evaluate LitGPT using [EleutherAI's lm-eval](https://github.com/EleutherAI/lm-evaluation-harness) framework with a large number of different evaluation tasks.
 
 You need to install the `lm-eval` framework first:
 
 ```bash
-pip install https://github.com/EleutherAI/lm-evaluation-harness/archive/refs/heads/master.zip -U
+pip install 'lm_eval @ git+https://github.com/EleutherAI/lm-evaluation-harness.git@115206dc89dad67b8b'
 ```
 
 &nbsp;
 
-### Evaluating Lit-GPT base models
+### Evaluating LitGPT base models
 
-Use the following command to evaluate Lit-GPT models on all tasks in Eleuther AI's Evaluation Harness.
+Use the following command to evaluate LitGPT models on all tasks in Eleuther AI's Evaluation Harness.
 
 ```bash
 python eval/lm_eval_harness.py \
     --checkpoint_dir "checkpoints/meta-llama/Llama-2-7b-hf" \
     --precision "bf16-true" \
-    --batch_size 4 \
     --save_filepath "results.json"
 ```
 
@@ -33,7 +32,6 @@ python eval/lm_eval_harness.py \
     --checkpoint_dir "checkpoints/meta-llama/Llama-2-7b-hf" \
     --eval_tasks "[truthfulqa_mc,hellaswag]" \
     --precision "bf16-true" \
-    --batch_size 4 \
     --save_filepath "results.json"
 ```
 
@@ -45,7 +43,7 @@ A list of supported tasks can be found [here](https://github.com/EleutherAI/lm-e
 
 The above command can be used to evaluate models that are saved via a single checkpoint file. This includes downloaded checkpoints and base models finetuned via the full and adapter finetuning scripts.
 
-For LoRA-finetuned models, you need to first merge the LoRA weights with the original checkpoint file as described in the [Merging LoRA Weights](https://github.com/Lightning-AI/lit-gpt/blob/main/tutorials/finetune_lora.md#merging-lora-weights) section of the LoRA finetuning documentation.
+For LoRA-finetuned models, you need to first merge the LoRA weights with the original checkpoint file as described in the [Merging LoRA Weights](finetune_lora.md#merging-lora-weights) section of the LoRA finetuning documentation.
 
 &nbsp;
 
@@ -60,7 +58,6 @@ For LoRA-finetuned models, you need to first merge the LoRA weights with the ori
       --checkpoint_dir "checkpoints/meta-llama/Llama-2-7b-hf" \
       --precision "bf16-true" \
       --eval_tasks "[hendrycksTest*]" \
-      --batch_size 4 \
       --num_fewshot 5 \
       --save_filepath "results.json"
   ```
